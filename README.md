@@ -1,12 +1,3 @@
-Segue o **README.md completo, atualizado e consolidado**, agora com:
-
-* ✅ Docker + PostgreSQL
-* ✅ Segurança com roles (`ROLE_BASIC` e `ROLE_ADMIN`)
-* ✅ Controle de acesso correto (SEM PUT)
-* ✅ Tudo integrado em um único documento profissional
-
----
-
 # 📌 Sistema de Cadastro de Clientes API
 
 ## 📖 Descrição
