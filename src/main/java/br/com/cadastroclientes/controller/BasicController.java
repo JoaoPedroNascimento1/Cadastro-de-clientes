@@ -1,5 +1,6 @@
 package br.com.cadastroclientes.controller;
 
+import br.com.cadastroclientes.documentation.BasicDocumentation;
 import br.com.cadastroclientes.mapper.ClienteMapper;
 import br.com.cadastroclientes.response.ClienteResponse;
 import br.com.cadastroclientes.service.ClienteService;
@@ -15,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/basic")
 @RequiredArgsConstructor
-public class BasicController {
+public class BasicController implements BasicDocumentation {
 
   private final ClienteService clienteService;
 

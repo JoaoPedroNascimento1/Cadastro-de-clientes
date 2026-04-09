@@ -1,6 +1,7 @@
 package br.com.cadastroclientes.controller;
 
 import br.com.cadastroclientes.config.TokenService;
+import br.com.cadastroclientes.documentation.AuthDocumentation;
 import br.com.cadastroclientes.entity.User;
 import br.com.cadastroclientes.mapper.UserMapper;
 import br.com.cadastroclientes.repository.UserRepository;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AuthController implements AuthDocumentation {
 
   private final UserService userService;
   private final AuthenticationManager authenticationManager;

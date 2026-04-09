@@ -1,5 +1,6 @@
 package br.com.cadastroclientes.controller;
 
+import br.com.cadastroclientes.documentation.AdminDocumentation;
 import br.com.cadastroclientes.mapper.ClienteMapper;
 import br.com.cadastroclientes.request.ClienteRequest;
 import br.com.cadastroclientes.response.ClienteResponse;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
-public class AdminController {
+public class AdminController implements AdminDocumentation {
 
   private final ClienteService clienteService;
 
