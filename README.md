@@ -1,328 +1,145 @@
-# 📌 Sistema de Cadastro de Clientes API
+# Cadastro de Clientes API
 
-## 📖 Descrição
+## Sobre o Projeto
+API REST desenvolvida para gerenciamento de clientes, com foco em boas práticas de desenvolvimento backend utilizando Java e Spring Boot.
 
-Este projeto consiste em uma API RESTful para gerenciamento de clientes, desenvolvida utilizando **Java com Spring Boot**.
-
-O sistema foi projetado para organizar e controlar dados de clientes, permitindo operações de cadastro, consulta e remoção de forma segura.
-
-A aplicação aplica boas práticas de desenvolvimento backend, incluindo arquitetura em camadas, validação de dados e autenticação com **JWT (JSON Web Token)**.
+O projeto foi construído com arquitetura em camadas, autenticação JWT, controle de permissões por roles e documentação interativa da API via Swagger/OpenAPI, simulando uma aplicação backend utilizada em ambientes reais de mercado.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-* **Java 17+**
-* **Spring Boot**
-* **Spring Web**
-* **Spring Data JPA**
-* **Spring Security**
-* **JWT**
-* **Hibernate**
-* **Validation**
-* **PostgreSQL**
-* **Maven**
-* **Docker & Docker Compose**
-
-Ferramentas:
-
-* Postman / Insomnia
-* Git e GitHub
+- Java 17
+- Spring Boot
+- Spring Security
+- JWT (JSON Web Token)
+- Spring Data JPA
+- PostgreSQL
+- Docker / Docker Compose
+- Swagger / OpenAPI
+- Maven
 
 ---
 
-## 🏗️ Arquitetura e Decisões Técnicas
+## Funcionalidades
 
-Arquitetura em camadas:
+### Autenticação e Segurança
+- Login com autenticação JWT
+- Proteção de rotas privadas
+- Controle de acesso baseado em Roles
+- Diferenciação entre usuários ADMIN e BASIC
 
-```id="x5b17y"
-Controller → Service → Repository → Entity
+### Gestão de Clientes
+- Cadastro de clientes
+- Listagem de clientes
+- Busca de cliente por ID
+- Exclusão de clientes
+
+### Documentação
+- Documentação completa dos endpoints com Swagger/OpenAPI
+
+---
+
+## Arquitetura do Projeto
+
+O projeto segue o padrão de arquitetura em camadas:
+
+```text
+Controller → Service → Repository → Database
 ```
 
-### 🔹 Decisões adotadas:
+### Organização das Responsabilidades
 
-* Separação de responsabilidades
-* Uso de DTOs
-* Segurança stateless com JWT
-* Integração com banco via JPA
-* Estrutura preparada para escalabilidade
-
----
-
-## ⚙️ Funcionalidades
-
-* ✅ Cadastro de usuários
-* ✅ Autenticação com JWT
-* ✅ CRUD parcial de clientes:
-
-  * Criar cliente
-  * Listar clientes
-  * Buscar por ID
-  * Deletar cliente
-* ✅ Controle de acesso por roles
+- **Controller:** Responsável por receber requisições HTTP e retornar respostas.
+- **Service:** Contém regras de negócio da aplicação.
+- **Repository:** Responsável pela comunicação com banco de dados.
+- **DTOs:** Utilizados para transferência segura de dados.
+- **Security:** Configuração de autenticação/autorização JWT.
 
 ---
 
-## 🔐 Segurança
+## Diferenciais Técnicos
 
-A aplicação utiliza **Spring Security + JWT**, com controle de acesso baseado em roles.
+Este projeto implementa conceitos importantes utilizados no mercado backend:
 
----
-
-### 🔹 Roles do sistema
-
-* `ROLE_BASIC` → Pode **apenas visualizar** clientes
-* `ROLE_ADMIN` → Pode **gerenciar clientes**
-
----
-
-### 🔹 Autenticação
-
-1. Login com email e senha
-2. Geração de token JWT
-3. Envio no header:
-
-```http id="pn3rfe"
-Authorization: Bearer <token>
-```
-
-4. Filtro valida e autentica o usuário
+- Arquitetura RESTful
+- Separação de responsabilidades (SRP)
+- Autenticação Stateless com JWT
+- Controle de permissões com Spring Security
+- Documentação desacoplada utilizando interfaces Swagger
+- Containerização com Docker
+- Boas práticas de organização e Clean Code
 
 ---
 
-### 🔒 Autorização (Controle de acesso)
+## Como Executar o Projeto
 
-| Endpoint                | BASIC | ADMIN |
-| ----------------------- | ----- | ----- |
-| `/auth/**`              | ✅     | ✅     |
-| `GET /clientes`         | ✅     | ✅     |
-| `GET /clientes/{id}`    | ✅     | ✅     |
-| `POST /clientes`        | ❌     | ✅     |
-| `DELETE /clientes/{id}` | ❌     | ✅     |
+### Pré-requisitos
 
----
-
-### 🔒 Regras do ClienteController
-
-#### ✔ `ROLE_BASIC`
-
-* Listar clientes
-* Buscar cliente por ID
+- Java 17+
+- Maven
+- Docker / Docker Compose
+- PostgreSQL (caso não utilize Docker)
 
 ---
 
-#### ✔ `ROLE_ADMIN`
+### Clonar Repositório
 
-* Criar clientes
-* Deletar clientes
-* Visualizar clientes
-
----
-
-### 🔹 Garantias de segurança
-
-* 🔐 Autenticação stateless
-* 🔐 Autorização por roles
-* 🔐 Separação entre leitura e escrita
-
----
-
-## ▶️ Como Executar o Projeto
-
-### 🔹 Execução local
-
-```bash id="gjs12n"
+```bash
 git clone https://github.com/JoaoPedroNascimento1/Cadastro-de-clientes.git
-cd Cadastro-de-clientes
-mvn spring-boot:run
 ```
 
 ---
 
-## 🐳 Executando com Docker (PostgreSQL)
+### Executar com Docker
 
-### 📋 Pré-requisitos
-
-```bash id="llst6u"
-docker --version
-docker-compose --version
+```bash
+docker-compose up -d
 ```
 
 ---
 
-### ⚙️ Passo a passo
+### Executar Aplicação
 
-#### 1. Clonar o projeto
-
-```bash id="duhivp"
-git clone https://github.com/JoaoPedroNascimento1/Cadastro-de-clientes.git
-cd Cadastro-de-clientes
+```bash
+./mvnw spring-boot:run
 ```
 
 ---
 
-#### 2. Subir containers
+## Documentação da API
 
-```bash id="jgoa4u"
-docker-compose up --build
-```
+Após iniciar a aplicação:
 
-Isso irá:
-
-* Baixar PostgreSQL
-* Criar banco automaticamente
-* Subir a aplicação
-
----
-
-#### 3. Acessar
-
-```id="em18c2"
-http://localhost:8080
+```bash
+http://localhost:8080/swagger-ui/index.html
 ```
 
 ---
 
-### 🗄️ Configuração do banco
+## Principais Endpoints
 
-* Host: `db`
-* Porta: `5432`
-* Database: `clientes_db`
-* Usuário: `postgres`
-* Senha: `postgres`
+### Autenticação
 
----
-
-### 🔄 Comandos úteis
-
-```bash id="e9j9b1"
-docker-compose down
-docker-compose up
-docker-compose down -v
-```
+| Método | Endpoint | Descrição |
+|--------|---------|----------|
+| POST | /auth/login | Realiza login do usuário |
 
 ---
 
-### 📦 docker-compose.yml
+### Clientes
 
-```yaml id="9g8u0m"
-version: '3.8'
-
-services:
-  db:
-    image: postgres:15
-    container_name: postgres-db
-    environment:
-      POSTGRES_DB: clientes_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  app:
-    build: .
-    container_name: clientes-api
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/clientes_db
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-
-volumes:
-  postgres_data:
-```
+| Método | Endpoint | Descrição |
+|--------|---------|----------|
+| POST | /clientes | Cadastra novo cliente |
+| GET | /clientes | Lista todos os clientes |
+| GET | /clientes/{id} | Busca cliente por ID |
+| DELETE | /clientes/{id} | Remove cliente |
 
 ---
 
-## 📡 Endpoints da API
+## Autor
 
-### 🔐 Login
+Desenvolvido por **João Pedro Nascimento**
 
-```http id="trq79v"
-POST /auth/login
-```
-
----
-
-### 👤 Clientes
-
-#### Listar
-
-```http id="0pt6qg"
-GET /clientes
-```
-
----
-
-#### Buscar por ID
-
-```http id="k3fnhl"
-GET /clientes/{id}
-```
-
----
-
-#### Criar
-
-```http id="e3nfwc"
-POST /clientes
-```
-
----
-
-#### Deletar
-
-```http id="h7htg9"
-DELETE /clientes/{id}
-```
-
----
-
-## 📂 Estrutura de Pastas
-
-```id="q1bbfl"
-src/main/java/
-
-├── controller
-├── service
-├── repository
-├── entity
-├── dto
-├── security
-├── config
-```
-
----
-
-## 🔮 Melhorias Futuras
-
-* Paginação
-* Swagger
-* Testes automatizados
-* Deploy em cloud
-* Controle mais avançado de permissões
-
----
-
-## ⭐ Diferenciais do Projeto
-
-* ✔ Segurança com JWT
-* ✔ Controle de acesso por roles
-* ✔ Integração com PostgreSQL via Docker
-
----
-
-## 👨‍💻 Autor
-
-**João Pedro Nascimento**
-
-* GitHub: [https://github.com/JoaoPedroNascimento1](https://github.com/JoaoPedroNascimento1)
-* LinkedIn: *(https://www.linkedin.com/in/joaopedronascimento1/)*
-
----
-
+[LinkedIn](https://www.linkedin.com/in/joaopedronascimento1) • [GitHub](https://github.com/JoaoPedroNascimento1)
