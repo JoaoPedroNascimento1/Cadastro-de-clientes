@@ -1,6 +1,7 @@
 package br.com.cadastroclientes.service;
 
 import br.com.cadastroclientes.entity.Cliente;
+import br.com.cadastroclientes.exception.ResourceNotFoundException;
 import br.com.cadastroclientes.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class ClienteService {
     if(clienteRepository.existsById(id)){
       return clienteRepository.findById(id);
     }
-    return Optional.empty();
+    throw new ResourceNotFoundException("Id não encontrado!");
   }
 
   public Cliente cadastrarCliente(Cliente cliente){
